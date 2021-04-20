@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1017486203961",
+    "project_id": "onlineclassnotificator",
+    "storage_bucket": "onlineclassnotificator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1017486203961:android:13b0be53599b4a332f41e8",
+        "android_client_info": {
+          "package_name": "com.onlineclassnotificator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1017486203961-519fdedu5odga3rp09mv81j6oumtcuc8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmo8k0fTnvIDZcrjocP_I-IiYFP9cndkg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1017486203961-519fdedu5odga3rp09mv81j6oumtcuc8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
