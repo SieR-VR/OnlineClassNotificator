@@ -20,8 +20,8 @@ export default class Sidebar extends React.Component {
                 <View style={styles.profileContainer}>
                     <View style={styles.profile}>
                         <View style={{marginLeft:12}}>
-                            <Text style={{opacity:0.6}}>학번</Text>
-                            <Text style={{fontSize:22, color:'white', opacity:0.9}}>{this.state.StudentID}</Text>
+                            <Text style={{color:'white'}}>학번</Text>
+                            <Text style={{fontSize:22, color:'white'}}>{this.state.StudentID}</Text>
                         </View>
                     </View>
                     <TouchableOpacity onPress={_ => this.props.navigation.closeDrawer()}>
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         display:"flex", 
         flexDirection:"row",
         justifyContent: "space-between",
-        backgroundColor: "#666",
+        backgroundColor: "#000",
     },
     profile: {
         display:"flex",

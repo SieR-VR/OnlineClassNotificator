@@ -36,12 +36,16 @@ class Lunch extends React.Component {
         else {
             return (    
                 <View style={styles.container}>
-                    <View style={{alignItems: "center"}}>
+                    <View style={styles.containerTitle}>
                         <Text style={styles.title}>오늘의 급식</Text>
                     </View>
                     <FlatList
                         data={this.state.dataSource.DDISH_NM.split('<br/>')}
-                        renderItem={({item}) => <Text style={styles.itemDish}>{item}</Text>}
+                        renderItem={({item}) => 
+                        <View style={styles.containerDish}>
+                            <Text style={styles.itemDish}>{item}</Text>
+                        </View>
+                        }
                     />
                 </View>
             )
@@ -55,9 +59,21 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    containerTitle: {
+        alignItems: "center", 
+        backgroundColor: "#FFF", 
+        height: Dimensions.get('window').height / 16,
+        justifyContent: "center",
+    },
     title: {
         fontWeight: "bold",
         fontSize: 24,
+        textAlign: "center",
+    },
+    containerDish: {
+        backgroundColor: "#FFF",
+        borderColor: "#BBB",
+        borderWidth: 1,
     },
     itemDish: {
         padding: 10,

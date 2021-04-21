@@ -1,12 +1,46 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image } from 'react-native';
 
+class ColTable extends React.Component {
+    render() {
+        return (
+            <View style={styles.column}>           
+                <View style={styles.cell}><Text style={styles.titleText}>{this.props.periods[0]}</Text></View>
+                <View style={styles.cell}><Text style={styles.text}>{this.props.periods[1]}</Text></View>
+                <View style={styles.cell}><Text style={styles.text}>{this.props.periods[2]}</Text></View>
+                <View style={styles.cell}><Text style={styles.text}>{this.props.periods[3]}</Text></View>
+                <View style={styles.cell}><Text style={styles.text}>{this.props.periods[4]}</Text></View>
+                <View style={styles.cell}><Text style={styles.text}>{this.props.periods[5]}</Text></View>
+                <View style={styles.cell}><Text style={styles.text}>{this.props.periods[6]}</Text></View>
+                <View style={styles.cell}><Text style={styles.text}>{this.props.periods[7]}</Text></View>
+            </View>
+        )
+    }
+}
+
+class TitleColTable extends React.Component {
+    render() {
+        return (
+            <View style={styles.column}>           
+                <View style={styles.cell}></View>
+                <View style={styles.cell}><Text style={styles.titleText}>1</Text></View>
+                <View style={styles.cell}><Text style={styles.titleText}>2</Text></View>
+                <View style={styles.cell}><Text style={styles.titleText}>3</Text></View>
+                <View style={styles.cell}><Text style={styles.titleText}>4</Text></View>
+                <View style={styles.cell}><Text style={styles.titleText}>5</Text></View>
+                <View style={styles.cell}><Text style={styles.titleText}>6</Text></View>
+                <View style={styles.cell}><Text style={styles.titleText}>7</Text></View>
+            </View>
+        )
+    }
+}
+
 class TimeTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
             isLoading: true,
-            errText: "로딩 중.."
+            errText: "로딩 중..",
          };
     }
     componentDidMount() {
@@ -15,10 +49,9 @@ class TimeTable extends React.Component {
             .then(responseJson => {
                 this.setState(
                     { 
-                        dataSource: responseJson,
+                        tableData: responseJson,
                         isLoading: false
                     },
-                    function() {}
                 );
             })
             .catch(error => {
@@ -40,86 +73,18 @@ class TimeTable extends React.Component {
         }
         return (
             <View>
-                <View style={{flexDirection: "row"}}>
-                    <View style={Styles.WhiteCell}>
-                        <TouchableOpacity
-                            style={{alignItems:"center", margin:20}}
-                            onPress={this.props.navigation.openDrawer}
-                        >
-                            <Image source={require("../../assets/SimpleLineIcon.webp")} style={{width: Dimensions.get('window').width / 9, height: Dimensions.get('window').width / 6}}/>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={Styles.BlackCell}>
-                        <Text style={Styles.TitleText}>월</Text>
-                    </View>
-                    <View style={Styles.WhiteCell}>
-                        <Text style={Styles.TitleText}>화</Text>
-                    </View>
-                    <View style={Styles.BlackCell}>
-                        <Text style={Styles.TitleText}>수</Text>
-                    </View>
-                    <View style={Styles.WhiteCell}>
-                        <Text style={Styles.TitleText}>목</Text>
-                    </View>
-                    <View style={Styles.BlackCell}>
-                        <Text style={Styles.TitleText}>금</Text>
-                    </View>
-                </View>
-                <View style={{flexDirection: "row"}}>
-                    <View style={Styles.BlackCell}><Text style={Styles.TitleText}>1</Text></View>
-                    <View style={Styles.WhiteCell}><Text style={Styles.WhiteText}>{this.state.dataSource[0].Monday}</Text></View>
-                    <View style={Styles.BlackCell}><Text style={Styles.BlackText}>{this.state.dataSource[0].Tuesday}</Text></View>
-                    <View style={Styles.WhiteCell}><Text style={Styles.WhiteText}>{this.state.dataSource[0].Wednesday}</Text></View>
-                    <View style={Styles.BlackCell}><Text style={Styles.BlackText}>{this.state.dataSource[0].Thursday}</Text></View>
-                    <View style={Styles.WhiteCell}><Text style={Styles.WhiteText}>{this.state.dataSource[0].Friday}</Text></View>
-                </View>
-                <View style={{flexDirection: "row"}}>
-                    <View style={Styles.WhiteCell}><Text style={Styles.TitleText}>2</Text></View>
-                    <View style={Styles.BlackCell}><Text style={Styles.BlackText}>{this.state.dataSource[1].Monday}</Text></View>
-                    <View style={Styles.WhiteCell}><Text style={Styles.WhiteText}>{this.state.dataSource[1].Tuesday}</Text></View>
-                    <View style={Styles.BlackCell}><Text style={Styles.BlackText}>{this.state.dataSource[1].Wednesday}</Text></View>
-                    <View style={Styles.WhiteCell}><Text style={Styles.WhiteText}>{this.state.dataSource[1].Thursday}</Text></View>
-                    <View style={Styles.BlackCell}><Text style={Styles.BlackText}>{this.state.dataSource[1].Friday}</Text></View>
-                </View>
-                <View style={{flexDirection: "row"}}>
-                    <View style={Styles.BlackCell}><Text style={Styles.TitleText}>3</Text></View>
-                    <View style={Styles.WhiteCell}><Text style={Styles.WhiteText}>{this.state.dataSource[2].Monday}</Text></View>
-                    <View style={Styles.BlackCell}><Text style={Styles.BlackText}>{this.state.dataSource[2].Tuesday}</Text></View>
-                    <View style={Styles.WhiteCell}><Text style={Styles.WhiteText}>{this.state.dataSource[2].Wednesday}</Text></View>
-                    <View style={Styles.BlackCell}><Text style={Styles.BlackText}>{this.state.dataSource[2].Thursday}</Text></View>
-                    <View style={Styles.WhiteCell}><Text style={Styles.WhiteText}>{this.state.dataSource[2].Friday}</Text></View>
-                </View>
-                <View style={{flexDirection: "row"}}>
-                    <View style={Styles.WhiteCell}><Text style={Styles.TitleText}>4</Text></View>
-                    <View style={Styles.BlackCell}><Text style={Styles.BlackText}>{this.state.dataSource[3].Monday}</Text></View>
-                    <View style={Styles.WhiteCell}><Text style={Styles.WhiteText}>{this.state.dataSource[3].Tuesday}</Text></View>
-                    <View style={Styles.BlackCell}><Text style={Styles.BlackText}>{this.state.dataSource[3].Wednesday}</Text></View>
-                    <View style={Styles.WhiteCell}><Text style={Styles.WhiteText}>{this.state.dataSource[3].Thursday}</Text></View>
-                    <View style={Styles.BlackCell}><Text style={Styles.BlackText}>{this.state.dataSource[3].Friday}</Text></View>
-                </View>
-                <View style={{flexDirection: "row"}}>
-                    <View style={Styles.BlackCell}><Text style={Styles.TitleText}>5</Text></View>
-                    <View style={Styles.WhiteCell}><Text style={Styles.WhiteText}>{this.state.dataSource[4].Monday}</Text></View>
-                    <View style={Styles.BlackCell}><Text style={Styles.BlackText}>{this.state.dataSource[4].Tuesday}</Text></View>
-                    <View style={Styles.WhiteCell}><Text style={Styles.WhiteText}>{this.state.dataSource[4].Wednesday}</Text></View>
-                    <View style={Styles.BlackCell}><Text style={Styles.BlackText}>{this.state.dataSource[4].Thursday}</Text></View>
-                    <View style={Styles.WhiteCell}><Text style={Styles.WhiteText}>{this.state.dataSource[4].Friday}</Text></View>
-                </View>
-                <View style={{flexDirection: "row"}}>
-                    <View style={Styles.WhiteCell}><Text style={Styles.TitleText}>6</Text></View>
-                    <View style={Styles.BlackCell}><Text style={Styles.BlackText}>{this.state.dataSource[5].Monday}</Text></View>
-                    <View style={Styles.WhiteCell}><Text style={Styles.WhiteText}>{this.state.dataSource[5].Tuesday}</Text></View>
-                    <View style={Styles.BlackCell}><Text style={Styles.BlackText}>{this.state.dataSource[5].Wednesday}</Text></View>
-                    <View style={Styles.WhiteCell}><Text style={Styles.WhiteText}>{this.state.dataSource[5].Thursday}</Text></View>
-                    <View style={Styles.BlackCell}><Text style={Styles.BlackText}>{this.state.dataSource[5].Friday}</Text></View>
-                </View>
-                <View style={{flexDirection: "row"}}>
-                    <View style={Styles.BlackCell}><Text style={Styles.TitleText}>7</Text></View>
-                    <View style={Styles.WhiteCell}><Text style={Styles.WhiteText}>{this.state.dataSource[6].Monday}</Text></View>
-                    <View style={Styles.BlackCell}><Text style={Styles.BlackText}>{this.state.dataSource[6].Tuesday}</Text></View>
-                    <View style={Styles.WhiteCell}><Text style={Styles.WhiteText}>{this.state.dataSource[6].Wednesday}</Text></View>
-                    <View style={Styles.BlackCell}><Text style={Styles.BlackText}>{this.state.dataSource[6].Thursday}</Text></View>
-                    <View style={Styles.WhiteCell}><Text style={Styles.WhiteText}>{this.state.dataSource[6].Friday}</Text></View>
+                <View style={styles.container}>
+                    <TitleColTable/>
+                    <ColTable periods={['월'].concat(this.state.tableData[0])}/>
+                    <ColTable periods={['화'].concat(this.state.tableData[1])}/>
+                    <ColTable periods={['수'].concat(this.state.tableData[2])}/>
+                    <ColTable periods={['목'].concat(this.state.tableData[3])}/>
+                    <ColTable periods={['금'].concat(this.state.tableData[4])}/>
+                </View>                    
+                <View style={styles.imagesContainer}>
+                    <TouchableOpacity onPress={this.props.navigation.openDrawer}>
+                         <Image source={require("../../assets/SidebarIcon.png")} style={{width: 100, height: 100}}/>
+                    </TouchableOpacity>
                 </View>
             </View>
         )
@@ -128,34 +93,11 @@ class TimeTable extends React.Component {
 
 export const TimeTableScreen = ({navigation}) => <TimeTable navigation={navigation} name='timetable'/>
 
-const Styles = StyleSheet.create({
-    WhiteCell: {
-        width: Dimensions.get('window').width / 6,
-        height: Dimensions.get('window').width / 6,
-        backgroundColor: "#ffffff",
-        borderWidth: 1,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    BlackCell: {
-        width: Dimensions.get('window').width / 6,
-        height: Dimensions.get('window').width / 6,
-        backgroundColor: "#ffffff",
-        borderWidth: 1,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    WhiteText: {
-        color: "#000",
-        fontWeight: "bold",
-    },
-    BlackText: {
-        color: "#000",
-        fontWeight: "bold",
-    },
-    TitleText: {
-        color: "#000",
-        fontSize: 32,
-        fontWeight: "bold",
-    }
+const styles = StyleSheet.create({
+    container: { flexDirection: "row" },
+    column: { flexDirection: "column", width: Dimensions.get('window').width / 6 },
+    cell: { backgroundColor: "#FFF", borderWidth: 1, height: Dimensions.get('window').width / 6, justifyContent: "center" },
+    titleText: { textAlign: "center", fontWeight: "bold", fontSize: 32 },
+    text: { textAlign: "center", fontWeight: "bold", fontSize: 14 },
+    imagesContainer: { height: 240, width: Dimensions.get('window').width }
 })
